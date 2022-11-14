@@ -1,12 +1,11 @@
 const { Router } = require("express");
-const { saveCountries } = require("../controllers/countriesController");
-
+const { savedCountries, countriesList } = require("../controllers/countriesController");
 const countriesRouter = Router();
 
 //---------------------------GET BY NAME or GET ALL---------------------------
 countriesRouter.get("/", async (req, res)=>{
     const { name } = req.query
-    const allCountries = await saveCountries();
+    const allCountries = await savedCountries();
 
     try {
         if(name){
@@ -28,7 +27,7 @@ countriesRouter.get("/", async (req, res)=>{
 //---------------------------GET BY ID---------------------------
 countriesRouter.get("/:id", async (req, res)=>{
     const { id } = req.params;
-    const allCountries = await saveCountries();
+    const allCountries = await savedCountries();
 
     try {
         if(id){
@@ -40,5 +39,15 @@ countriesRouter.get("/:id", async (req, res)=>{
     }
 })
 
+// //---------------------------GET COUNTRIES LIST---------------------------
+// countriesRouter.get("/", async(req, res)=>{
+//     const list = await countriesList()
+
+//     try {
+//         res.status(200).send(list)
+//     } catch (error) {
+//         res.status(400).send({error: error.message})
+//     }
+// })
 
 module.exports = countriesRouter;

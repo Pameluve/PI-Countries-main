@@ -24,7 +24,7 @@ const getApiCountries = async ()=>{
 
 //------------GUARDARLOS EN LA DATA BASE Y MOSTRARLOS CON LAS ACTIVITIES------------
 
-const saveCountries = async ()=>{
+const savedCountries = async ()=>{
     const countries = await getApiCountries()
     countries.forEach(element=>{
         Country.findOrCreate({
@@ -42,16 +42,28 @@ const saveCountries = async ()=>{
     });
     console.log("countries saved")
     const allCountries = await Country.findAll({
-        include:{
+        include:[{
             model: Activity,
-            atributes: ["name"],
-            through: { atributes:[] }
-        }
+            attributes: ["name", "difficulty", "duration", "season"],
+            through: { attributes:[] }
+        }]
     });
+
     return allCountries;
 };
 
 
+//------------OBTENER LISTADO DE TODOS LOS COUNTRIES------------
+
+const countriesList = async ()=>{
+    const countries = await Country.findAll({
+        attributes:["name"],
+        order:[["name", "ASC"]]
+    });
+    return countries;
+}
+
 module.exports={
-    saveCountries
+    savedCountries,
+    countriesList
 }
