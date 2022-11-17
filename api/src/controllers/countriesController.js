@@ -42,6 +42,7 @@ const savedCountries = async ()=>{
     });
     console.log("countries saved")
     const allCountries = await Country.findAll({
+        order:[["name", "ASC"]],
         include:[{
             model: Activity,
             attributes: ["name", "difficulty", "duration", "season"],

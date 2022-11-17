@@ -43,7 +43,7 @@ const rootReducer = (state = initialState, action)=>{
             }
         case FILTER_BY_ACTIVITY:
             const allCountries = state.allCountries
-            const filterByActivity = allCountries.filter(country=> country.activities.includes(action.payload))
+            const filterByActivity = allCountries.filter(country=> country.activities.map(ele=>ele.name).includes(action.payload));
             return{
                 ...state,
                 countries: filterByActivity
@@ -65,15 +65,15 @@ const rootReducer = (state = initialState, action)=>{
                 countries: sortedArray
             }
         case ORDER_BY_POPULATION:
-            let populationdArray = action.payload === "PopulationASC"?
+            let populationdArray = action.payload === "PopulationDESC"?
             state.countries.sort((a,b)=>{
-                if(a.name > b.name) return 1;
-                if(a.name < b.name) return -1;
+                if(a.population > b.population) return 1;
+                if(a.population < b.population) return -1;
                 return 0;
             }) :
             state.countries.sort((a,b)=>{
-                if(a.name > b.name) return -1;
-                if(a.name < b.name) return 1;
+                if(a.population > b.population) return -1;
+                if(a.population < b.population) return 1;
                 return 0;
             })
             return{

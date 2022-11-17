@@ -1,4 +1,5 @@
 import React from "react";
+import "./styles/paginate.css";
 
 const Paginate = ({countriesPerPage, allCountries, paginate, currentPage})=>{
     const pageNumbers = []
@@ -8,8 +9,8 @@ const Paginate = ({countriesPerPage, allCountries, paginate, currentPage})=>{
     }
 
     return(
-        <nav>
-            <ul>
+        <nav className="container-paginado">
+            <ul className="lista-paginado">
                 { pageNumbers && pageNumbers.map(number=>(
                     <li>
                         {currentPage === number?

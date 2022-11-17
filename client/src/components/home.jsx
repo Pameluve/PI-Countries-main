@@ -1,14 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getActivities, getCountries } from "../redux/actions";
+import { getCountries, getActivities, filterByContinent, filterByActivity, orderByCountryName, orderByPopulation } from "../redux/actions";
 import Card from "./card";
 import Paginate from "./paginate";
+import SearchBar from "./searchBar";
+import './styles/home.css'
 
 const Home = ()=>{
     const dispatch = useDispatch();
     const allCountries = useSelector((state)=> state.countries)
     const activities = useSelector((state)=> state.activities)
+    const [order, setOrder] = useState("");
 
 //---------------------------PAGINATE-------------------------------  
 const [currentPage, setCurrentPage] = useState(1);
@@ -17,6 +20,7 @@ const lastCountry = currentPage * countriesPerPage   // 10
 const firstCountry = lastCountry - countriesPerPage  // 0
 const currentCountries = allCountries.slice(firstCountry, lastCountry)
 const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
 //------------------------------------------------------------------
 
     useEffect(()=>{
@@ -30,15 +34,36 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
         dispatch(getCountries());
     };
 
-    const orderByNameHandler = ()=>{}
-    const orderByPopulationHandler = ()=>{}
-    const filterByContinentHandler = ()=>{}
-    const filterByActivityHandler = ()=>{}
+    const orderByNameHandler = (event)=>{
+        event.preventDefault();
+        dispatch(orderByCountryName(event.target.value));
+        setCurrentPage(1);
+        setOrder(event.target.value);
+    }
 
+    const orderByPopulationHandler = (event)=>{
+        event.preventDefault();
+        dispatch(orderByPopulation(event.target.value));
+        setCurrentPage(1);
+        setOrder(event.target.value);
+    }
+
+    const filterByContinentHandler = (event)=>{
+        dispatch(filterByContinent(event.target.value));
+        setCurrentPage(1);
+    }
+
+    const filterByActivityHandler = (event)=>{
+        dispatch(filterByActivity(event.target.value));
+        setCurrentPage(1);
+    }
 
 //---------------------------RENDER-------------------------------   
     return(
-        <div>
+        <div className="backgroundHome">
+            <SearchBar
+                setCurrentPage={setCurrentPage}
+            />
             <button onClick={(event)=>{clickHandler(event)}}>Cargar todos los Paises</button>
             <h1>COUNTRIES - HOME</h1>
 
@@ -53,7 +78,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
                     <option value = "PopulationDESC">Menor Población</option>
                 </select>
                 <select onChange={event=> filterByContinentHandler(event)}>
-                    <option value= "Africa">Africa</option>
+                    <option value="Africa">Africa</option>
                     <option value="Americas">America</option>
                     <option value="Antarctic">Antartica</option>
                     <option value="Asia">Asia</option>
@@ -73,7 +98,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
                         currentPage = { currentPage }
                     />
                 </div>
-                <div>
+                <div className="card-container-home">
                     {currentCountries?.map((country)=>{
                         return(
                             <>
@@ -82,6 +107,7 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
                                     id = {country.id}
                                     name = {country.name}
                                     continent = {country.continent}
+                                    population = {country.population}
                                 />
                             </>
                         )
