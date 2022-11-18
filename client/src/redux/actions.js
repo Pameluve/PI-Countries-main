@@ -52,10 +52,11 @@ export const getActivities = ()=>{
 //---------------------------POST-------------------------------
 export const postActivity = (payload)=> async (dispatch)=>{
     try {
+        console.log(payload)
         await axios.post("http://localhost:3001/activities", payload);
         return dispatch ({type: POST_ACTIVITY});
     } catch (error) {
-        return alert("Information missing");
+        return alert("Activity not posted");
     }
 };
 

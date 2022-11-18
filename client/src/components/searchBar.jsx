@@ -23,6 +23,9 @@ const SearchBar = ({setCurrentPage})=>{
         <div>
             <input type="text" placeholder="Nombre del Pais..." onChange={(event)=> inputHandler(event)}/>
             <button type="submit" onClick={(event)=> submitHandler(event)}>Buscar</button>
+            <Link to ="/activities">
+                <button>Actividades Turisticas</button>
+            </Link>
             <Link to ="/createActivity">
                 <button>Crear Actividad Turistica</button>
             </Link>
