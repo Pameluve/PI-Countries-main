@@ -8,8 +8,10 @@ import { deleteActivity } from "../redux/actions";
 const ActivityCard = ({ id, name, difficulty, duration, season, countries})=>{
     const dispatch = useDispatch()
 
-    const deleteActivityHandler = ()=>{}; 
-    
+    const deleteActivityHandler = (event)=>{
+        event.preventDefault();
+        dispatch(deleteActivity(id))
+    }; 
     
     return(
         <div>
@@ -19,7 +21,8 @@ const ActivityCard = ({ id, name, difficulty, duration, season, countries})=>{
                 <h5>Temporada: {season}</h5>
                 <h5>Paises: {countries+" "}</h5>
                 <button>Editar</button>
-                <button onChange={event=> deleteActivityHandler(event)}>Eliminar</button>
+                <button onClick={(event)=>{deleteActivityHandler(event)}}>Eliminar</button>
+                {/* <ButtonDelete id={id}/> */}
         </div>
     )
 };

@@ -56,7 +56,7 @@ export const postActivity = (payload)=> async (dispatch)=>{
         await axios.post("http://localhost:3001/activities", payload);
         return dispatch ({type: POST_ACTIVITY});
     } catch (error) {
-        return alert("Activity not posted");
+        return alert("not posted");
     }
 };
 
@@ -74,8 +74,8 @@ export const putActivity = (payload)=> async(dispatch)=>{
 export const deleteActivity = (id)=>{
     return async (dispatch)=>{
         try {
-            await axios.get(`http://localhost:3001/activities/${id}`);
-            return dispatch ({type: DELETE_ACTIVITY});
+            const json = await axios.delete(`http://localhost:3001/activities/${id}`);
+            return dispatch ({type: DELETE_ACTIVITY, payload: json.data});
         } catch (error) {
             console.log(error);
         }

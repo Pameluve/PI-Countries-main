@@ -26,9 +26,6 @@ const SearchBar = ({setCurrentPage})=>{
             <Link to ="/activities">
                 <button>Actividades Turisticas</button>
             </Link>
-            <Link to ="/createActivity">
-                <button>Crear Actividad Turistica</button>
-            </Link>
         </div>
     )
 };

@@ -19,7 +19,7 @@ const Activities = ()=>{
         <div>
             <h1>Activities</h1>
             <Link to ="/home">
-                <button>Volver</button>
+                <button>Home</button>
             </Link>
             <Link to ="/createActivity">
                 <button>Crear Actividad Turistica</button>
