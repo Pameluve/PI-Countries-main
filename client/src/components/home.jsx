@@ -16,8 +16,8 @@ const Home = ()=>{
 //---------------------------PAGINATE-------------------------------  
 const [currentPage, setCurrentPage] = useState(1);
 const [countriesPerPage] = useState(10);
-const lastCountry = currentPage * countriesPerPage   // 10
-const firstCountry = lastCountry - countriesPerPage  // 0
+const lastCountry = currentPage ===1? 9: currentPage * countriesPerPage   // 10
+const firstCountry = currentPage ===1? 0: lastCountry - countriesPerPage  // 0
 const currentCountries = allCountries.slice(firstCountry, lastCountry)
 const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -64,10 +64,8 @@ const paginate = (pageNumber) => setCurrentPage(pageNumber);
             <SearchBar
                 setCurrentPage={setCurrentPage}
             />
-            <button onClick={(event)=>{clickHandler(event)}}>Cargar todos los Paises</button>
-            <h1>COUNTRIES - HOME</h1>
-
-            <div>
+            <button className="btn" onClick={(event)=>{clickHandler(event)}}>Cargar todos los Paises</button>
+            <div className="filtrosHome">
                 <h3>Ordenar/filtrar los paises:</h3>
                 <select onChange={event=> orderByNameHandler(event)}>
                     <option value = "asc">A-Z</option>

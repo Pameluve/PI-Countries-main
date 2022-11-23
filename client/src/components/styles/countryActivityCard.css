@@ -1,0 +1,22 @@
+.container-detail-card{
+    justify-content: space-around;
+    padding: 8px;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: hsla(210, 6%, 88%, 0.7);
+    box-shadow: 6px 5px 10px #032057c4;
+    line-height: 1.5;
+    width: 150px;
+}
+
+.container-detail-card h5{
+    padding:0%;
+    margin: 2%;
+}
+
+.container-detail-card h4{
+    padding:0%;
+    margin: 2%;
+}

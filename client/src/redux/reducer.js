@@ -1,4 +1,4 @@
-import { DELETE_ACTIVITY, FILTER_BY_ACTIVITY, FILTER_BY_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRY_BY_NAME, GET_DETAIL_BY_ID, ORDER_BY_COUNTRY_NAME, ORDER_BY_POPULATION, POST_ACTIVITY } from "./actions";
+import { CLEAN_PAGE, DELETE_ACTIVITY, FILTER_BY_ACTIVITY, FILTER_BY_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRY_BY_NAME, GET_DETAIL_BY_ID, ORDER_BY_COUNTRY_NAME, ORDER_BY_POPULATION, POST_ACTIVITY, PUT_ACTIVITY } from "./actions";
 
 const initialState ={
     countries:[],
@@ -34,6 +34,11 @@ const rootReducer = (state = initialState, action)=>{
             return{
                 ...state,
             }
+        case PUT_ACTIVITY:
+            return{
+                ...state,
+                activities: action.payload
+            }   
         case DELETE_ACTIVITY:
             return{
                 ...state,
@@ -83,6 +88,11 @@ const rootReducer = (state = initialState, action)=>{
             return{
                 ...state,
                 countries: populationdArray
+            }
+        case CLEAN_PAGE:
+            return{
+               ...state,
+               detail:[]
             }
         default:
             return {...state};

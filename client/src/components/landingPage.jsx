@@ -1,14 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./styles/landingPage.css"
+import titulo from "../components/media/titulo.gif"
 
 const LandingPage = ()=>{
     return(
-        <div>
+        <div className="backgroundLanding">
             <div>
-                <h1>Landing Page</h1>
+                <img src={titulo} alt=""/>
             </div>
             <Link to="/home">
-                <button>Ingresar</button>
+                <button className="btn">Ingresar</button>
             </Link>
         </div>
     )

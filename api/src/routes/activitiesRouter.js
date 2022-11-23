@@ -18,10 +18,9 @@ activitiesRouter.get("/", async(req, res)=>{
 activitiesRouter.post("/", async(req, res)=>{
     try {
         let { name, difficulty, duration, season, country } = req.body;
-        
-        // if(!name || !difficulty || !duration || !season || !country){
-        //     throw Error ("Information missing");
-        // }
+        if(!name || !difficulty || !duration || !season || !country){
+            throw Error ("Information missing");
+        }
        
         await postActivity(name, difficulty, duration, season, country)
         res.status(200).send ("Activity created successfully")

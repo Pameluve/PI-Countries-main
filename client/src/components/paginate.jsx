@@ -14,8 +14,8 @@ const Paginate = ({countriesPerPage, allCountries, paginate, currentPage})=>{
                 { pageNumbers && pageNumbers.map(number=>(
                     <li>
                         {currentPage === number?
-                        <button onClick = {()=> paginate(number)}>{number}</button>:
-                        <button onClick = {()=> paginate(number)}>{number}</button>}
+                        <button id="selected" onClick = {()=> paginate(number)}>{number}</button>:
+                        <button id="notSelected" onClick = {()=> paginate(number)}>{number}</button>}
                     </li>
                 ))}
             </ul>

@@ -2,25 +2,30 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getDetailbyId } from "../redux/actions";
+import { cleanPage, getDetailbyId } from "../redux/actions";
 import CountryActivityCard from "./countryActivityCard";
 import './styles/home.css'
+import "./styles/detail.css"
 
 const Detail = (props)=>{
+    console.log(props)
     const dispatch = useDispatch()
     const detail = useSelector((state)=> state.detail)
     const countryId = props.match.params.id
 
     useEffect(()=>{
         dispatch(getDetailbyId(countryId))
-        // return(()=>{
-        // })
+        return(()=>{
+            dispatch(cleanPage())
+        })
     }, [dispatch])
 
     return(
-        <div>
-            <div>
-                <img src={detail.flag} alt={"img not found"}/>
+        <div className="detailBackground">
+            <div className="flagContainer">
+                <img src={detail.flag} alt={"img not found"} width="500px"/>
+            </div>
+            <div className="infoContainer">
                 <h1>{detail.name}</h1>
                 <h4>Continente: {detail.continent}</h4>
                 <h4>Código del Pais: {detail.id}</h4>
@@ -46,7 +51,7 @@ const Detail = (props)=>{
                 </div>
             </div>
             <Link to = "/home">
-                <button>Volver</button>
+                <button id="detailBtn">Home</button>
             </Link>
         </div>
     )

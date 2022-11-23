@@ -11,6 +11,7 @@ export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
 export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
 export const ORDER_BY_COUNTRY_NAME = "ORDER_BY_COUNTRY_NAME";
 export const ORDER_BY_POPULATION = "ORDER_BY_POPULATION";
+export const CLEAN_PAGE = "CLEAN_PAGE";
 
 //---------------------------GET-------------------------------
 export const getCountries = ()=>{
@@ -61,9 +62,9 @@ export const postActivity = (payload)=> async (dispatch)=>{
 };
 
 //---------------------------PUT-------------------------------
-export const putActivity = (payload)=> async(dispatch)=>{
+export const putActivity = (id, payload)=> async(dispatch)=>{
     try {
-        await axios.put("http://localhost:3001/activities", payload);
+        await axios.put(`http://localhost:3001/activities/${id}`, payload);
         return dispatch ({type: PUT_ACTIVITY});
     } catch (error) {
         return alert("Information missing");
@@ -74,8 +75,8 @@ export const putActivity = (payload)=> async(dispatch)=>{
 export const deleteActivity = (id)=>{
     return async (dispatch)=>{
         try {
-            const json = await axios.delete(`http://localhost:3001/activities/${id}`);
-            return dispatch ({type: DELETE_ACTIVITY, payload: json.data});
+            await axios.delete(`http://localhost:3001/activities/${id}`);
+            return dispatch ({type: DELETE_ACTIVITY});
         } catch (error) {
             console.log(error);
         }
@@ -99,3 +100,7 @@ export const orderByCountryName = (payload)=>{
 export const orderByPopulation = (payload)=>{
     return {type: ORDER_BY_POPULATION, payload:payload}
 };
+
+export const cleanPage =()=>{
+    return {type: CLEAN_PAGE}
+}

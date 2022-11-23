@@ -10,7 +10,6 @@ import Detail from './components/detail';
 function App() {
   return (
     <div className="App">
-      <h1>Henry Countries</h1>
       <Switch>
         <Route exact path ="/" component = {LandingPage}/>
         <Route exact path = "/home" component = {Home}/>

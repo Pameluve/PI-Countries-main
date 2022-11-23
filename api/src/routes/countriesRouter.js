@@ -39,15 +39,4 @@ countriesRouter.get("/:id", async (req, res)=>{
     }
 })
 
-// //---------------------------GET COUNTRIES LIST---------------------------
-// countriesRouter.get("/", async(req, res)=>{
-//     const list = await countriesList()
-
-//     try {
-//         res.status(200).send(list)
-//     } catch (error) {
-//         res.status(400).send({error: error.message})
-//     }
-// })
-
 module.exports = countriesRouter;

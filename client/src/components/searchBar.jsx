@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getCountryByName } from "../redux/actions";
 import { Link } from "react-router-dom";
+import "./styles/searchBar.css";
+import logo from "./media/logo.gif";
 
 const SearchBar = ({setCurrentPage})=>{
     const dispatch = useDispatch();
@@ -20,11 +22,12 @@ const SearchBar = ({setCurrentPage})=>{
     }
 
     return(
-        <div>
+        <div className="searchContainer">
+            <img src={logo} alt=""/>
             <input type="text" placeholder="Nombre del Pais..." onChange={(event)=> inputHandler(event)}/>
-            <button type="submit" onClick={(event)=> submitHandler(event)}>Buscar</button>
+            <button className="btn" type="submit" onClick={(event)=> submitHandler(event)}>Buscar</button>
             <Link to ="/activities">
-                <button>Actividades Turisticas</button>
+                <button className="btn">Actividades Turisticas</button>
             </Link>
         </div>
     )
