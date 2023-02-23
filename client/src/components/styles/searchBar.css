@@ -1,8 +1,9 @@
 .searchContainer{
     background-color: rgb(253, 237, 5, 95%);
     display: flex;
-    width: auto;
-    height: 60px;
+    justify-content: space-around;
+    /* width: auto; */
+    height: 40px;
     margin:auto;
     padding: 30px;
 }
@@ -22,6 +23,7 @@
 .searchContainer .btn{
     border-radius: 10px;
     border-style: none;
+    width: 220px;
     height: 38px;
     background-color: #196ae4e6;
     color: #1a1919;
@@ -33,9 +35,9 @@
     padding: 5px;
     text-decoration: none;
     box-shadow: 6px 5px 7px #252525;
-    position: relative;
+    /* position: relative; */
     top: 0px; left: 400px;
-    margin-right: 400px;
+    margin-right: 200px;
 }
 
 .searchContainer .btn:hover{
