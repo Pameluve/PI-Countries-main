@@ -18,8 +18,6 @@ const validation = (input)=>{
 
     if(input.season === "") errors.season = "Temporada requerida";
 
-    if(!input.country) errors.country = "Al menos 1 país debe ser seleccionado";
-
     return errors;
 };
 
