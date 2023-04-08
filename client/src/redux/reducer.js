@@ -4,7 +4,7 @@ const initialState ={
     countries:[],
     allCountries:[],
     detail:[],
-    activities:[]
+    activities:[],
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -37,7 +37,7 @@ const rootReducer = (state = initialState, action)=>{
         case PUT_ACTIVITY:
             return{
                 ...state,
-                activities: action.payload
+                activities: action.payload,
             }   
         case DELETE_ACTIVITY:
             return{

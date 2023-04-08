@@ -21,6 +21,15 @@ export const getCountries = ()=>{
     }
 };
 
+// export const getCountries = ()=>{
+//     return(dispatch)=>{
+//         axios.get("http://localhost:3001/countries")
+//        .then((response)=>{
+//         return dispatch ({type: GET_COUNTRIES, payload: response.data})})
+//        .catch((error)=>console.log("todo salio mal", error));
+//         }
+//     };
+
 export const getCountryByName = (name)=>{
     return async (dispatch)=>{
         try {
@@ -67,7 +76,8 @@ export const putActivity = (id, payload)=> async(dispatch)=>{
         await axios.put(`http://localhost:3001/activities/${id}`, payload);
         return dispatch ({type: PUT_ACTIVITY});
     } catch (error) {
-        return alert("Information missing");
+        console.log(error);
+        return alert("Not updated");
     }
 };
 
