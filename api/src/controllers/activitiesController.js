@@ -4,7 +4,8 @@ const { Country, Activity } = require("../db");
 const getActivities = async ()=>{
     const activities = await Activity.findAll({
         attributes:["id","name", "difficulty", "duration", "season"],
-        order:[["name", "ASC"]],
+        // order:[["name", "ASC"]],
+        order:[["id", "ASC"]],
         include:[{
             model: Country,
             attributes: ["name"],
@@ -25,7 +26,21 @@ const getActivities = async ()=>{
     return allActivities;
 }
 
-//------------POST ACTIVITIES-----------
+//------------GET ACTIVITY-----------
+const getActivity = async (id)=>{
+    const activity = await Activity.findOne({
+        where:{ id:id },
+        attributes:["id","name", "difficulty", "duration", "season"],
+        include:[{
+            model: Country,
+            attributes: ["name"],
+            through: { attributes:[] }
+        }]
+    })
+    return activity;
+};
+
+//----------------------POST ACTIVITIES-----------
 const postActivity = async (name, difficulty, duration, season, country)=>{
     let newActivity = await Activity.create({
         name,
@@ -39,22 +54,8 @@ const postActivity = async (name, difficulty, duration, season, country)=>{
     await newActivity.addCountry(dbCountry);
 };
 
-// //--------------------PUT ACTIVITIES----------------------
-const putActivity = async (name, difficulty, duration, season, country)=>{
-    let modifyActivity = await Activity.update({
-        name,
-        difficulty,
-        duration,
-        season
-    });
-    let dbCountry = await Country.findAll({
-        where: { name: country}
-    });
-    await modifyActivity.addCountry(dbCountry);
-    await modifyActivity.save()
-};
-
 module.exports={
     getActivities,
+    getActivity,
     postActivity
 }

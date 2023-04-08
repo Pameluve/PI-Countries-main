@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const { Activity, Country } = require("../db");
-const { postActivity, getActivities } = require("../controllers/activitiesController");
+const { postActivity, getActivities, getActivity} = require("../controllers/activitiesController");
 const activitiesRouter = Router();
 
 //---------------------------GET ALL ACTIVITIES-------------------------------
@@ -10,6 +10,18 @@ activitiesRouter.get("/", async(req, res)=>{
         allActivities? res.status(200).send(allActivities): res.status(404).send("No Activities Found")
     } catch (error) {
         res.status(400).send ({error: error.message});
+    }
+});
+
+
+//---------------------------GET ACTIVITY BY ID-------------------------------
+activitiesRouter.get("/:id", async (req, res)=>{
+    const { id } = req.params;
+    const activityFinder = await getActivity(id);
+    try {
+        activityFinder? res.status(200).send(activityFinder): res.status(404).send("Activity not Found")        
+    } catch (error) {
+        res.status(404).send ({error: error.message});
     }
 });
 
