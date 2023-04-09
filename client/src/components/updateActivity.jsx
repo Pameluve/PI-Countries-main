@@ -2,7 +2,12 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getCountries, putActivity } from "../redux/actions";
+import {
+  getActivityById,
+  getCountries,
+  putActivity,
+  cleanPage,
+} from "../redux/actions";
 import "./styles/createActivity.css";
 
 //---------------------------VALIDATOR-------------------------------
@@ -27,6 +32,7 @@ const UpdateActivity = (props) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const countries = useSelector((state) => state.countries);
+  const activity = useSelector((state) => state.activity);
   const [errors, setErrors] = useState({});
   const [input, setInput] = useState({
     name: "",
@@ -37,6 +43,7 @@ const UpdateActivity = (props) => {
   });
 
   useEffect(() => {
+    dispatch(getActivityById(activityId));
     dispatch(getCountries());
   }, [dispatch]);
 
@@ -118,7 +125,7 @@ const UpdateActivity = (props) => {
             type="text"
             value={input.name}
             name="name"
-            placeholder=""
+            placeholder={activity.name}
             onChange={(event) => inputHandler(event)}
           />
           {errors.name && <h5>{errors.name}</h5>}
@@ -129,6 +136,7 @@ const UpdateActivity = (props) => {
             type="number"
             value={input.difficulty}
             name="difficulty"
+            placeholder={activity.difficulty}
             onChange={(event) => inputHandler(event)}
           />
           {errors.difficulty && <h5>{errors.difficulty}</h5>}
@@ -139,7 +147,7 @@ const UpdateActivity = (props) => {
             type="text"
             value={input.duration}
             name="duration"
-            placeholder="00:00:00 hh:mm:ss"
+            placeholder={activity.duration}
             onChange={(event) => inputHandler(event)}
           />
           {errors.duration && <h5>{errors.duration}</h5>}

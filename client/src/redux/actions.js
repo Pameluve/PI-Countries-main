@@ -4,6 +4,7 @@ export const GET_COUNTRIES = "GET_COUNTRIES";
 export const GET_COUNTRY_BY_NAME = "GET_COUNTRY_BY_NAME";
 export const GET_DETAIL_BY_ID = "GET_DETAIL_BY_ID";
 export const GET_ACTIVITIES = "GET_ACTIVITIES";
+export const GET_ACTIVITY_BY_ID = "GET_ACTIVITY_BY_ID";
 export const POST_ACTIVITY = "POST_ACTIVITY";
 export const PUT_ACTIVITY = "PUT_ACTIVITY";
 export const DELETE_ACTIVITY = "DELETE_ACTIVITY";
@@ -56,6 +57,13 @@ export const getActivities = ()=>{
     return async (dispatch)=>{
         const json = await axios.get("http://localhost:3001/activities");
         return dispatch ({type: GET_ACTIVITIES, payload: json.data});
+    }
+};
+
+export const getActivityById = (id)=>{
+    return async (dispatch)=>{
+        const json = await axios.get(`http://localhost:3001/activities/${id}`);
+        return dispatch ({type: GET_ACTIVITY_BY_ID, payload: json.data});
     }
 };
 

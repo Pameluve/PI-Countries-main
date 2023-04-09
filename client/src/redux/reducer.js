@@ -1,10 +1,11 @@
-import { CLEAN_PAGE, DELETE_ACTIVITY, FILTER_BY_ACTIVITY, FILTER_BY_CONTINENT, GET_ACTIVITIES, GET_COUNTRIES, GET_COUNTRY_BY_NAME, GET_DETAIL_BY_ID, ORDER_BY_COUNTRY_NAME, ORDER_BY_POPULATION, POST_ACTIVITY, PUT_ACTIVITY } from "./actions";
+import { CLEAN_PAGE, DELETE_ACTIVITY, FILTER_BY_ACTIVITY, FILTER_BY_CONTINENT, GET_ACTIVITIES, GET_ACTIVITY_BY_ID, GET_COUNTRIES, GET_COUNTRY_BY_NAME, GET_DETAIL_BY_ID, ORDER_BY_COUNTRY_NAME, ORDER_BY_POPULATION, POST_ACTIVITY, PUT_ACTIVITY } from "./actions";
 
 const initialState ={
     countries:[],
     allCountries:[],
     detail:[],
     activities:[],
+    activity:{}
 }
 
 const rootReducer = (state = initialState, action)=>{
@@ -29,6 +30,11 @@ const rootReducer = (state = initialState, action)=>{
             return{
                 ...state,
                 activities: action.payload
+            }
+        case GET_ACTIVITY_BY_ID:
+            return{
+                ...state,
+                activity: action.payload
             }
         case POST_ACTIVITY:
             return{
@@ -92,7 +98,7 @@ const rootReducer = (state = initialState, action)=>{
         case CLEAN_PAGE:
             return{
                ...state,
-               detail:[]
+               detail:[],
             }
         default:
             return {...state};
