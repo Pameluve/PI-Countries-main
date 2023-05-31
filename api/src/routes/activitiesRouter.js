@@ -16,9 +16,9 @@ activitiesRouter.get("/", async(req, res)=>{
 
 //---------------------------GET ACTIVITY BY ID-------------------------------
 activitiesRouter.get("/:id", async (req, res)=>{
-    const { id } = req.params;
-    const activityFinder = await getActivity(id);
     try {
+        const { id } = req.params;
+        const activityFinder = await getActivity(id);
         activityFinder? res.status(200).send(activityFinder): res.status(404).send("Activity not Found")        
     } catch (error) {
         res.status(404).send ({error: error.message});

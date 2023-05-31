@@ -37,7 +37,7 @@ const getActivity = async (id)=>{
             through: { attributes:[] }
         }]
     })
-
+    
     const theActivity = {
             id: activity.id,
             name: activity.name,
