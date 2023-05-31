@@ -25,7 +25,7 @@ const ActivityCard = ({
       <h5>Dificultad: {difficulty}</h5>
       <h5>Duración: {duration}</h5>
       <h5>Temporada: {season}</h5>
-      <h5>Paises: {countries + " "}</h5>
+      <h5>Paises: {countries.map((country) => country + ", ")}</h5>
       <Link to={`/activities/${id}`}>
         <button id="putAct" value="update" onClick={() => {}}>
           Editar
