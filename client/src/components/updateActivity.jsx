@@ -2,12 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getActivityById,
-  getCountries,
-  putActivity,
-  cleanPage,
-} from "../redux/actions";
+import { getActivityById, getCountries, putActivity } from "../redux/actions";
 import "./styles/createActivity.css";
 
 //---------------------------VALIDATOR-------------------------------
@@ -45,7 +40,7 @@ const UpdateActivity = (props) => {
   useEffect(() => {
     dispatch(getActivityById(activityId));
     dispatch(getCountries());
-  }, [dispatch]);
+  }, [dispatch, activityId]);
 
   //---------------------------HANDLERS-------------------------------
   //----------------------FORM SUBMIT HANDLER-------------------------

@@ -19,7 +19,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const allCountries = useSelector((state) => state.countries);
   const activities = useSelector((state) => state.activities);
-  const [order, setOrder] = useState("");
+  const [, setOrder] = useState("");
 
   //---------------------------PAGINATE-------------------------------
   const [currentPage, setCurrentPage] = useState(1);

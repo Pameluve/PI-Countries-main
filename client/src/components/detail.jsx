@@ -19,7 +19,7 @@ const Detail = (props) => {
     return () => {
       dispatch(cleanPage());
     };
-  }, [dispatch]);
+  }, [dispatch, countryId]);
 
   return (
     <div className="detailBackground">
