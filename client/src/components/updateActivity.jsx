@@ -52,13 +52,7 @@ const UpdateActivity = (props) => {
   const submitHandler = (event) => {
     event.preventDefault();
     setErrors(validation(input));
-    if (
-      !input.name ||
-      !input.difficulty ||
-      !input.duration ||
-      !input.season ||
-      !input.country.length
-    ) {
+    if (!input.name || !input.difficulty || !input.duration || !input.season) {
       return alert("Por favor completa todos los campos");
     }
     dispatch(putActivity(activityId, input));
@@ -154,7 +148,7 @@ const UpdateActivity = (props) => {
         </div>
         <div>
           <label>Temporada:</label>
-          <label>
+          <label id={activity.season === "Autumn" && "labelChecked"}>
             <input
               type="checkbox"
               value="Autumn"
@@ -163,7 +157,7 @@ const UpdateActivity = (props) => {
             />
             Otoño
           </label>
-          <label>
+          <label id={activity.season === "Spring" && "labelChecked"}>
             <input
               type="checkbox"
               value="Spring"
@@ -172,7 +166,7 @@ const UpdateActivity = (props) => {
             />
             Primavera
           </label>
-          <label>
+          <label id={activity.season === "Summer" && "labelChecked"}>
             <input
               type="checkbox"
               value="Summer"
@@ -181,7 +175,7 @@ const UpdateActivity = (props) => {
             />
             Verano
           </label>
-          <label>
+          <label id={activity.season === "Winter" && "labelChecked"}>
             <input
               type="checkbox"
               value="Winter"
@@ -201,7 +195,9 @@ const UpdateActivity = (props) => {
               </option>
             ))}
           </select>
-          {errors.country && <h5>{errors.country}</h5>}
+          {activity.countries && (
+            <ul>{activity.countries.map((country) => country + ", ")}</ul>
+          )}
           <ul>{input.country.map((country) => country + ", ")}</ul>
         </div>
         <button id="submitBtn" type="submit">
