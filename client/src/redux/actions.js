@@ -17,7 +17,7 @@ export const CLEAN_PAGE = "CLEAN_PAGE";
 //---------------------------GET-------------------------------
 export const getCountries = ()=>{
     return async (dispatch)=>{
-        const json = await axios.get("http://localhost:3001/countries");
+        const json = await axios.get("/countries");
         return dispatch ({type: GET_COUNTRIES, payload: json.data});
     }
 };
@@ -34,7 +34,7 @@ export const getCountries = ()=>{
 export const getCountryByName = (name)=>{
     return async (dispatch)=>{
         try {
-            const json = await axios.get(`http://localhost:3001/countries?name=${name}`);
+            const json = await axios.get(`/countries?name=${name}`);
             return dispatch({type: GET_COUNTRY_BY_NAME, payload: json.data});
         } catch (error) {
             return alert("Country not found");
@@ -45,7 +45,7 @@ export const getCountryByName = (name)=>{
 export const getDetailbyId = (id)=>{
     return async (dispatch)=>{
         try {
-            const json = await axios.get(`http://localhost:3001/countries/${id}`);
+            const json = await axios.get(`/countries/${id}`);
             return dispatch ({type: GET_DETAIL_BY_ID, payload: json.data});
         } catch (error) {
             console.log(error);
@@ -55,14 +55,14 @@ export const getDetailbyId = (id)=>{
 
 export const getActivities = ()=>{
     return async (dispatch)=>{
-        const json = await axios.get("http://localhost:3001/activities");
+        const json = await axios.get("/activities");
         return dispatch ({type: GET_ACTIVITIES, payload: json.data});
     }
 };
 
 export const getActivityById = (id)=>{
     return async (dispatch)=>{
-        const json = await axios.get(`http://localhost:3001/activities/${id}`);
+        const json = await axios.get(`/activities/${id}`);
         return dispatch ({type: GET_ACTIVITY_BY_ID, payload: json.data});
     }
 };
@@ -71,7 +71,7 @@ export const getActivityById = (id)=>{
 export const postActivity = (payload)=> async (dispatch)=>{
     try {
         console.log(payload)
-        await axios.post("http://localhost:3001/activities", payload);
+        await axios.post("/activities", payload);
         return dispatch ({type: POST_ACTIVITY});
     } catch (error) {
         return alert("not posted");
@@ -81,7 +81,7 @@ export const postActivity = (payload)=> async (dispatch)=>{
 //---------------------------PUT-------------------------------
 export const putActivity = (id, payload)=> async(dispatch)=>{
     try {
-        await axios.put(`http://localhost:3001/activities/${id}`, payload);
+        await axios.put(`/activities/${id}`, payload);
         return dispatch ({type: PUT_ACTIVITY});
     } catch (error) {
         console.log(error);
@@ -93,7 +93,7 @@ export const putActivity = (id, payload)=> async(dispatch)=>{
 export const deleteActivity = (id)=>{
     return async (dispatch)=>{
         try {
-            await axios.delete(`http://localhost:3001/activities/${id}`);
+            await axios.delete(`/activities/${id}`);
             return dispatch ({type: DELETE_ACTIVITY});
         } catch (error) {
             console.log(error);
